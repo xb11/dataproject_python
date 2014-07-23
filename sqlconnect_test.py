@@ -50,7 +50,7 @@ endtime = \
 9
 
 def calculate_crowding(startmonth,endmonth,starttime,endtime):
-    sql = "SELECT `LOAD_NUM`,`capacity` FROM `dataproject`.`transit` \
+    sql = "SELECT `LOAD_NUM`,`capacity` FROM `dataproject`.`Transit` \
     WHERE %d<=HR AND HR<=%d AND '2013-%d-01'<=daymoyr AND daymoyr<='2013-%d-31'" \
     % (starttime,endtime,startmonth,endmonth)
     cursor.execute(sql)
