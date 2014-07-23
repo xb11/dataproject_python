@@ -4,7 +4,7 @@ import mysql.connector
 import numpy
 from mysql.connector import errorcode
 #Try to test if the connection is done
-
+#test change
 #user_id = "root"
 #password = "1234"
 try:
