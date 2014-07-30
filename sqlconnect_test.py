@@ -54,6 +54,7 @@ stopA = 2
 stopB = 5
 route = 1
 
+<<<<<<< HEAD
 #ontimeperformance calculate and painting in histogram
 def calculate_ontimeperformance(startmonth,endmonth,starttime,endtime,stopB,route):
     sql = "select `daymoyr`,`TRIPA`,`SCHDEV`  from `dataproject`.`transit` \
@@ -61,6 +62,21 @@ def calculate_ontimeperformance(startmonth,endmonth,starttime,endtime,stopB,rout
     '2013-%d-01'<=daymoyr AND daymoyr<='2013-%d-31' \
      AND SCHDEV <= 50 order by daymoyr ASC;"\
     %(route,stopB,starttime,endtime,startmonth,endmonth)
+=======
+
+<<<<<<< HEAD
+def calculate_crowding(startmonth,endmonth,starttime,endtime):
+    sql = "SELECT `LOAD_NUM`,`capacity` FROM `dataproject`.`Transit` \
+    WHERE %d<=HR AND HR<=%d AND '2013-%d-01'<=daymoyr AND daymoyr<='2013-%d-31'" \
+    % (starttime,endtime,startmonth,endmonth)
+=======
+def calculate_crowding(startmonth,endmonth,starttime,endtime,stopA,stopB,route):
+    sql = "SELECT `LOAD_NUM`,`capacity`,`STOPA` FROM `dataproject`.`transit` \
+    WHERE %d<=HR AND HR<=%d AND '2013-%d-01'<=daymoyr AND daymoyr<='2013-%d-31'\
+     AND ROUTE = %d AND %d < STOPA AND STOPA <= %d"\
+    % (starttime,endtime,startmonth,endmonth,route,stopA,stopB)
+>>>>>>> origin/master
+>>>>>>> origin/master
     cursor.execute(sql)
     results = cursor.fetchall()
     A = []
