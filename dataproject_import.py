@@ -4,6 +4,8 @@ import mysql.connector
 import numpy
 import matplotlib.pyplot as plt
 from mysql.connector import errorcode
+import glob
+import os
 #Try to test if the connection is done
 
 user_id = "root"
@@ -20,41 +22,46 @@ except mysql.connector.Error as err:
 else:
   cnx.close()
   
-#Create Database
+#Prepare for loading Database
 cnx = mysql.connector.connect(user='root',password='0820',database='dataproject')
 cursor = cnx.cursor()
 
+
+      #SetGlobal ="SHOW GLOBAL VARIABLES LIKE 'local_infile'\
+      #SET GLOBAL local_infile = 'ON'\
+      #SHOW GLOBAL VARIABLES LIKE 'local_infile'"
+path = "E:/Document/2012-2014CMU/Semesters/2014_Summer/Data_Project/Transit/OriginalData2012-2013/2012 1209-1211/1209_complete_zipped/SEPTEMBER2012_ALLGROUPS/*.csv"
+file_path="E:/Document/2012-2014CMU/Semesters/2014_Summer/Data_Project/Transit/OriginalData2012-2013/2012 1209-1211/1209_complete_zipped/SEPTEMBER2012_ALLGROUPS/"
 def load_database(cursor):
-  
     try:
-      SetGlobal ="SHOW GLOBAL VARIABLES LIKE 'local_infile'\
-      SET GLOBAL local_infile = 'ON'\
-      SHOW GLOBAL VARIABLES LIKE 'local_infile'"
-      sql = '''LOAD DATA INFILE 'E:/Document/2012-2014CMU/Semesters/2014 Summer/Data Project/Transit/OriginalData2012-2013/2012 1209-1211/WEEKDAYRIDECHECK_GROUP1_NOVEMBER2012.csv' INTO TABLE Transit
-FIELDS TERMINATED BY ','
-ENCLOSED BY '"' 
+      sql = '''LOAD DATA INFILE '{}'
+INTO TABLE Transit
+FIELDS TERMINATED BY ',' ENCLOSED BY '"' 
 LINES TERMINATED BY '\r\n'
-IGNORE 3 LINES
-(DOW, dir, ROUTE, TRIPA, BLOCKA, VEHNOA, @var1, STOPA, QSTOPA, ANAME, HR, MIN, SEC, DHR, DMIN, DSEC, ON_NUM, OFF_NUM, LOAD_NUM, DLMILES, DLMIN, DLPMLS, DWTIME, DELTA, SCHTIM, SCHDEV, SRTIME, ARTIME)
-set daymoyr = STR_TO_DATE(SUBSTRING(@var1,1,10) '%e.%c.%Y')'''
-      #cursor.execute(SetGlobal)
-      #print"local infile set to ON"
-      cursor.execute(sql)
-      cnx.commit()
-      print"data successfully loaded!"
+IGNORE 1 LINES
+(DOW, dir, ROUTE, TRIPA, BLOCKA, VEHNOA, @var1, STOPA, QSTOPA, ANAME, HR, MIN, SEC, DHR, DMIN, DSEC, ON_NUM, OFF_NUM, LOAD_NUM, DLMILES, DLMIN, DLPMLS, DWTIME, @var3, @var2, SCHDEV, SRTIME, ARTIME)
+set daymoyr = STR_TO_DATE(left(@var1,11), '%e-%b-%Y'),
+DELTA = right(@var2, 3),SCHTIM = right(@var3, 3)'''
+      l = os.listdir(file_path)
+      #for fname in glob.glob(path):
+      for fname in l:
+        if fname.endswith('.csv'):
+          print(fname)
+          cursor.execute(sql.format(file_path+fname))
+          cnx.commit()
+          print"Loading file:"+fname
     except mysql.connector.Error as err:
-      print("Failed loading database: {}".format(err))
-      exit(1)
-
-#print cnx.database  == 'dataproject'
-
+        print("Failed loading database: {}".format(err))
+        exit(1)
+ 
 try:
     cnx.database == 'dataproject'
     print "dataproject Used"
     load_database(cursor)
-    print"dataproject loaded with new data"
+    print "All data successfully loaded!"
 except mysql.connector.Error as err:
-    if err.errno == errorcode.ER_BAD_DB_ERROR:
-      print("Failed loading database: {}".format(err))
-      exit(1)
+    print("Failed loading database: {}".format(err))
+    exit(1)
+
+    
 

@@ -66,15 +66,15 @@ DSEC int(2) NOT NULL,\
 ON_NUM int(2) NOT NULL,\
 OFF_NUM int(2) NOT NULL,\
 LOAD_NUM int(2) NOT NULL,\
-DLMILES float(5,2) NOT NULL,\
-DLMIN float(5,2) NOT NULL,\
-DLPMLS float(5,3) NOT NULL,\
-DWTIME float(5,2) NOT NULL,\
-DELTA int(10) NOT NULL,\
-SCHTIM int(10) NOT NULL,\
-SCHDEV float(5,2) NOT NULL,\
-SRTIME float(5,2) NOT NULL,\
-ARTIME float(5,2) NOT NULL)"
+DLMILES float(7,2) NOT NULL,\
+DLMIN float(7,2) NOT NULL,\
+DLPMLS float(7,3) NOT NULL,\
+DWTIME float(7,2) NOT NULL,\
+DELTA int(5) NOT NULL,\
+SCHTIM int(5) NOT NULL,\
+SCHDEV float(7,2) NOT NULL,\
+SRTIME float(7,2) NOT NULL,\
+ARTIME float(7,2) NOT NULL)"
 
 cursor.execute(sql2)
 print "Transit Table Created!"
