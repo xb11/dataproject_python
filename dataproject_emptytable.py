@@ -27,7 +27,7 @@ cursor = cnx.cursor()
 def create_database(cursor):
     try:
         cursor.execute(
-            "SHOW GLOBAL VARIABLES LIKE 'local_infile'")
+            "CREATE DATABASE {} DEFAULT CHARACTER SET 'utf8'".format(dataproject))
     except mysql.connector.Error as err:
         print("Failed creating database: {}".format(err))
         exit(1)
@@ -43,6 +43,39 @@ except mysql.connector.Error as err:
     else:
         print(err)
         exit(1)
-        
 
+sql = "DROP TABLE IF EXISTS `Transit`"
+cursor.execute(sql)
+print "Transit Table Deleted!"
+sql2 = "CREATE TABLE Transit(DOW int(2) NOT NULL,\
+dir int(2) NOT NULL,\
+ROUTE int(2) NOT NULL,\
+TRIPA int(4) NOT NULL,\
+BLOCKA int(6) NOT NULL,\
+VEHNOA int(4) NOT NULL,\
+daymoyr date NOT NULL,\
+STOPA int(4) NOT NULL,\
+QSTOPA char(10) NOT NULL,\
+ANAME varchar(30) NOT NULL,\
+HR int(2) NOT NULL,\
+MIN int(2) NOT NULL,\
+SEC int(2) NOT NULL, \
+DHR int(2) NOT NULL,\
+DMIN int(2) NOT NULL,\
+DSEC int(2) NOT NULL,\
+ON_NUM int(2) NOT NULL,\
+OFF_NUM int(2) NOT NULL,\
+LOAD_NUM int(2) NOT NULL,\
+DLMILES float(5,2) NOT NULL,\
+DLMIN float(5,2) NOT NULL,\
+DLPMLS float(5,3) NOT NULL,\
+DWTIME float(5,2) NOT NULL,\
+DELTA int(10) NOT NULL,\
+SCHTIM int(10) NOT NULL,\
+SCHDEV float(5,2) NOT NULL,\
+SRTIME float(5,2) NOT NULL,\
+ARTIME float(5,2) NOT NULL)"
+
+cursor.execute(sql2)
+print "Transit Table Created!"
 
