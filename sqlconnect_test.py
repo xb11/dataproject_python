@@ -9,15 +9,13 @@ from mysql.connector import errorcode
 #Try to test if the connection is done
 
 user_id = "root"
-password = "1234"
+password = "0820"
 try:
-<<<<<<< HEAD
 
   cnx = mysql.connector.connect(user='root',password='0820',database='dataproject')
 
-=======
-  cnx = mysql.connector.connect(user='root',password='1234',database='dataproject',port='3308')
->>>>>>> origin/master
+
+
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENOR:
     print("Something is wrong with your user name or password")
@@ -29,12 +27,9 @@ else:
   cnx.close()
   
 #Create Database
-<<<<<<< HEAD
 
 cnx = mysql.connector.connect(user='root',password='0820',database='dataproject')
-=======
-cnx = mysql.connector.connect(user='root',password='1234',database='dataproject',port='3308')
->>>>>>> origin/master
+
 cursor = cnx.cursor()
 
 def create_database(cursor):
@@ -65,7 +60,7 @@ stopA = 2
 stopB = 5
 route = 1
 
-<<<<<<< HEAD
+
 
 #ontimeperformance calculate and painting in histogram
 def calculate_ontimeperformance(startmonth,endmonth,starttime,endtime,stopB,route):
@@ -108,7 +103,7 @@ plt.axvline(x = threshold_upper)
 
 plt.text(threshold_lower,numpy.max(n),'%f'%percentage,horizontalalignment='center')
 plt.show()
-=======
+
 #ontimeperformance calculate and painting in histogram
 #def calculate_ontimeperformance(startmonth,endmonth,starttime,endtime,stopB,route):
 #    sql = "select `daymoyr`,`TRIPA`,`SCHDEV`  from `dataproject`.`transit` \
@@ -139,7 +134,7 @@ plt.show()
 #
 #plt.text(threshold_lower,numpy.max(n),'%f'%percentage,horizontalalignment='center')
 #plt.show()
->>>>>>> origin/master
+
 
 #WAITINGTIME CALCULATE AND PAINTING IN HISTOGRAM
 #def calculate_waitingtime(startmonth,endmonth,starttime,endtime,stopB,route):
@@ -329,7 +324,3 @@ plt.show()
 
 cnx.close()
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
