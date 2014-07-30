@@ -9,9 +9,13 @@ from mysql.connector import errorcode
 #Try to test if the connection is done
 
 user_id = "root"
-password = "1234"
+password = "0820" 
 try:
+<<<<<<< HEAD
   cnx = mysql.connector.connect(user='root',password='1234',database='dataproject',port='3308')
+=======
+  cnx = mysql.connector.connect(user='root',password='0820',database='dataproject')
+>>>>>>> ecf08a23559bc5a84885705e1531cc8cc57a50e9
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENOR:
     print("Something is wrong with your user name or password")
@@ -23,13 +27,17 @@ else:
   cnx.close()
   
 #Create Database
+<<<<<<< HEAD
 cnx = mysql.connector.connect(user='root',password='1234',database='dataproject',port='3308')
+=======
+cnx = mysql.connector.connect(user='root',password='0820',database='dataproject')
+>>>>>>> ecf08a23559bc5a84885705e1531cc8cc57a50e9
 cursor = cnx.cursor()
 
 def create_database(cursor):
     try:
         cursor.execute(
-            "CREATE DATABASE {} DEFAULT CHARACTER SET 'utf8'".format(dataproject))
+            "SHOW GLOBAL VARIABLES LIKE 'local_infile'")
     except mysql.connector.Error as err:
         print("Failed creating database: {}".format(err))
         exit(1)
@@ -46,13 +54,6 @@ except mysql.connector.Error as err:
         print(err)
         exit(1)
         
-startmonth = 10
-endmonth = 10
-starttime = 7
-endtime = 9
-stopA = 2
-stopB = 5
-route = 1
 
 <<<<<<< HEAD
 #ontimeperformance calculate and painting in histogram
@@ -64,6 +65,7 @@ def calculate_ontimeperformance(startmonth,endmonth,starttime,endtime,stopB,rout
     %(route,stopB,starttime,endtime,startmonth,endmonth)
 =======
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 def calculate_crowding(startmonth,endmonth,starttime,endtime):
     sql = "SELECT `LOAD_NUM`,`capacity` FROM `dataproject`.`Transit` \
@@ -208,3 +210,5 @@ plt.show()
 
 cnx.close()
 
+=======
+>>>>>>> ecf08a23559bc5a84885705e1531cc8cc57a50e9
