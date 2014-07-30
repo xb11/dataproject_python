@@ -11,11 +11,9 @@ from mysql.connector import errorcode
 user_id = "root"
 password = "0820" 
 try:
-<<<<<<< HEAD
-  cnx = mysql.connector.connect(user='root',password='1234',database='dataproject',port='3308')
-=======
+
   cnx = mysql.connector.connect(user='root',password='0820',database='dataproject')
->>>>>>> ecf08a23559bc5a84885705e1531cc8cc57a50e9
+
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENOR:
     print("Something is wrong with your user name or password")
@@ -27,11 +25,8 @@ else:
   cnx.close()
   
 #Create Database
-<<<<<<< HEAD
-cnx = mysql.connector.connect(user='root',password='1234',database='dataproject',port='3308')
-=======
+
 cnx = mysql.connector.connect(user='root',password='0820',database='dataproject')
->>>>>>> ecf08a23559bc5a84885705e1531cc8cc57a50e9
 cursor = cnx.cursor()
 
 def create_database(cursor):
@@ -55,7 +50,7 @@ except mysql.connector.Error as err:
         exit(1)
         
 
-<<<<<<< HEAD
+
 #ontimeperformance calculate and painting in histogram
 def calculate_ontimeperformance(startmonth,endmonth,starttime,endtime,stopB,route):
     sql = "select `daymoyr`,`TRIPA`,`SCHDEV`  from `dataproject`.`transit` \
@@ -63,22 +58,15 @@ def calculate_ontimeperformance(startmonth,endmonth,starttime,endtime,stopB,rout
     '2013-%d-01'<=daymoyr AND daymoyr<='2013-%d-31' \
      AND SCHDEV <= 50 order by daymoyr ASC;"\
     %(route,stopB,starttime,endtime,startmonth,endmonth)
-=======
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-def calculate_crowding(startmonth,endmonth,starttime,endtime):
-    sql = "SELECT `LOAD_NUM`,`capacity` FROM `dataproject`.`Transit` \
-    WHERE %d<=HR AND HR<=%d AND '2013-%d-01'<=daymoyr AND daymoyr<='2013-%d-31'" \
-    % (starttime,endtime,startmonth,endmonth)
-=======
+
+
 def calculate_crowding(startmonth,endmonth,starttime,endtime,stopA,stopB,route):
     sql = "SELECT `LOAD_NUM`,`capacity`,`STOPA` FROM `dataproject`.`transit` \
     WHERE %d<=HR AND HR<=%d AND '2013-%d-01'<=daymoyr AND daymoyr<='2013-%d-31'\
      AND ROUTE = %d AND %d < STOPA AND STOPA <= %d"\
     % (starttime,endtime,startmonth,endmonth,route,stopA,stopB)
->>>>>>> origin/master
->>>>>>> origin/master
+
     cursor.execute(sql)
     results = cursor.fetchall()
     A = []
@@ -210,5 +198,4 @@ plt.show()
 
 cnx.close()
 
-=======
->>>>>>> ecf08a23559bc5a84885705e1531cc8cc57a50e9
+
