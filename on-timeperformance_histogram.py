@@ -12,11 +12,11 @@ from mysql.connector import errorcode
 
 #Try to test if the connection is done
 user_id = "root"
-password = ""
+password = "0820"
 database = "dataproject"
 port = "3306"
 try:
-  cnx = mysql.connector.connect(user='root',password='',database='dataproject',port='3306')
+  cnx = mysql.connector.connect(user='root',password='0820',database='dataproject',port='3306')
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENOR:
     print("Something is wrong with your user name or password")
@@ -52,7 +52,7 @@ except mysql.connector.Error as err:
         exit(1)
 #user-specified data        
 startmonth = 9
-endmonth = 10
+endmonth = 11
 starttime = 7
 endtime = 9
 stopA = 2
@@ -64,7 +64,7 @@ route = 1
 def calculate_ontimeperformance(startmonth,endmonth,starttime,endtime,stopB,route):
     sql = "select `daymoyr`,`TRIPA`,`SCHDEV`  from `dataproject`.`transit` \
      where ROUTE = %d AND STOPA = %d AND %d<=HR AND HR<%d AND DOW = 1 AND \
-    '2013-%d-01'<=daymoyr AND daymoyr<='2013-%d-31' \
+    '2012-%d-01'<=daymoyr AND daymoyr<='2013-%d-31' \
      AND SCHDEV <= 50 order by daymoyr ASC;"\
     %(route,stopB,starttime,endtime,startmonth,endmonth)
     cursor.execute(sql)
