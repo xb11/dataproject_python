@@ -9,9 +9,12 @@ import os
 #Try to test if the connection is done
 
 user_id = "root"
-password = "0820" 
+password = "0820"
+database = "dataproject"
+port = "3306"
+
 try:
-  cnx = mysql.connector.connect(user='root',password='0820',database='dataproject')
+  cnx = mysql.connector.connect(user=user_id,password=password,database=database,port=port)
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENOR:
     print("Something is wrong with your user name or password")
@@ -23,7 +26,7 @@ else:
   cnx.close()
   
 #Prepare for loading Database
-cnx = mysql.connector.connect(user='root',password='0820',database='dataproject')
+cnx = mysql.connector.connect(user=user_id,password=password,database=database,port=port)
 cursor = cnx.cursor()
 
 

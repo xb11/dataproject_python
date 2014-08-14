@@ -10,8 +10,11 @@ from mysql.connector import errorcode
 
 user_id = "root"
 password = "1234"
+database = "dataproject"
+port = "3306"
+
 try:
-  cnx = mysql.connector.connect(user='root',password='',database='dataproject',port='3306')
+  cnx = mysql.connector.connect(user=user_id,password=password,database=database,port=port)
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENOR:
     print("Something is wrong with your user name or password")
@@ -23,7 +26,7 @@ else:
   cnx.close()
   
 #Create Database
-cnx = mysql.connector.connect(user='root',password='',database='dataproject',port='3306')
+cnx = mysql.connector.connect(user=user_id,password=password,database=database,port=port)
 cursor = cnx.cursor()
 
 def create_database(cursor):
