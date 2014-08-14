@@ -9,7 +9,7 @@ from mysql.connector import errorcode
 #Try to test if the connection is done
 
 user_id = "root"
-password = "1234"
+password = "0820"
 database = "dataproject"
 port = "3306"
 
