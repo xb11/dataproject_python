@@ -12,11 +12,11 @@ from mysql.connector import errorcode
 
 #Try to test if the connection is done
 user_id = "root"
-password = "0820"
+password = ""
 database = "dataproject"
-
+port = "3306"
 try:
-  cnx = mysql.connector.connect(user='root',password='0820',database='dataproject')
+  cnx = mysql.connector.connect(user=user_id,password=password,database=database,port=port)
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENOR:
     print("Something is wrong with your user name or password")
@@ -28,7 +28,7 @@ else:
   cnx.close()
   
 #Create Database
-cnx = mysql.connector.connect(user=user_id,password=password,database=database)
+cnx = mysql.connector.connect(user=user_id,password=password,database=database,port=port)
 cursor = cnx.cursor()
 #if there is no database set-up
 def create_database(cursor):
@@ -43,7 +43,6 @@ def create_database(cursor):
 #test if we can access the database--dataproject
 try:
     cnx.database == 'dataproject'
-    print "dataproject Used"
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_BAD_DB_ERROR:
         create_database(cursor)
@@ -54,26 +53,23 @@ except mysql.connector.Error as err:
 #user-specified data        
 startmonth = 9
 endmonth = 10
-starttime = 6
-endtime = 12
+starttime = 7
+endtime = 9
 stopA = 19
 stopB = 20
-route = 281
+route = 614
 
 #WAITINGTIME CALCULATE AND PAINTING IN HISTOGRAM
 #define data-import and pre-processing function 
 def calculate_waitingtime(startmonth,endmonth,starttime,endtime,stopB,route):
     sql = "select `daymoyr`,`TRIPA`,`DHR`,`DMIN`,`DSEC`,`ON_NUM`  from \
-    `dataproject`.`transit` where ROUTE = %d AND STOPA = %d  and QSTOPA = '  E19310'\
-    AND %d<=HR AND HR<%d AND DOW = 1 AND '2012-%d-01'<=daymoyr AND daymoyr<='2013-%d-31' \
+    `dataproject`.`transit` where ROUTE = %d AND STOPA = %d  and QSTOPA = '  E19840' \
+    AND %d<=HR AND HR<%d AND DOW = 1 AND '2013-%d-01'<=daymoyr AND daymoyr<='2013-%d-31' \
      order by daymoyr,DHR,DMIN,DSEC ASC;"\
     %(route,stopB,starttime,endtime,startmonth,endmonth)
     cursor.execute(sql)
-    print 1
     row = cursor.fetchone()
-    print 2
     date = row[0]
-    
     Dtime = row[2]*60 + row[3] + row[4]/60.0
     waiting_time = []
     results = cursor.fetchall()

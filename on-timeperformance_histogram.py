@@ -12,19 +12,11 @@ from mysql.connector import errorcode
 
 #Try to test if the connection is done
 user_id = "root"
-<<<<<<< HEAD
-password = "0820"
-=======
 password = "1234"
->>>>>>> origin/master
 database = "dataproject"
 port = "3308"
 try:
-<<<<<<< HEAD
-  cnx = mysql.connector.connect(user='root',password='0820',database='dataproject',port='3306')
-=======
   cnx = mysql.connector.connect(user=user_id,password=password,database=database,port=port)
->>>>>>> origin/master
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENOR:
     print("Something is wrong with your user name or password")
@@ -59,13 +51,8 @@ except mysql.connector.Error as err:
         print(err)
         exit(1)
 #user-specified data        
-<<<<<<< HEAD
-startmonth = 9
-endmonth = 11
-=======
 startdate = '2012-09-01'
 enddate = '2013-10-31'
->>>>>>> origin/master
 starttime = 7
 endtime = 9
 stopB = 18
@@ -74,14 +61,6 @@ route = 614
 
 #on-timeperformance calculate and painting in histogram
 #DEFINE data-import function  
-<<<<<<< HEAD
-def calculate_ontimeperformance(startmonth,endmonth,starttime,endtime,stopB,route):
-    sql = "select `daymoyr`,`TRIPA`,`SCHDEV`  from `dataproject`.`transit` \
-     where ROUTE = %d AND STOPA = %d AND %d<=HR AND HR<%d AND DOW = 1 AND \
-    '2012-%d-01'<=daymoyr AND daymoyr<='2013-%d-31' \
-     AND SCHDEV <= 50 order by daymoyr ASC;"\
-    %(route,stopB,starttime,endtime,startmonth,endmonth)
-=======
 #input:startdate,enddate,strattime in oneday,endtime in one day,route,stopA and QstopA
 #(one user-specified stop has two QstopA and ANAME,here using stopA and QstopA 2 valuable
 #to indicate the line going away or the line return)
@@ -92,7 +71,6 @@ def calculate_ontimeperformance(startdate,enddate,starttime,endtime,stopB,QstopB
     '%s'<=daymoyr AND daymoyr<='%s' \
      AND SCHDEV <= 50 order by daymoyr ASC;'''\
     %(route,stopB,QstopB,starttime,endtime,startdate,enddate)
->>>>>>> origin/master
     cursor.execute(sql)
     results = cursor.fetchall()
     A = []
