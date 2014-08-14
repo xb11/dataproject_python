@@ -12,11 +12,19 @@ from mysql.connector import errorcode
 
 #Try to test if the connection is done
 user_id = "root"
+<<<<<<< HEAD
 password = "1234"
+=======
+password = "0820"
+>>>>>>> origin/master
 database = "dataproject"
 port = "3308"
 try:
   cnx = mysql.connector.connect(user=user_id,password=password,database=database,port=port)
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 except mysql.connector.Error as err:
   if err.errno == errorcode.ER_ACCESS_DENOR:
     print("Something is wrong with your user name or password")
@@ -61,6 +69,10 @@ route = 614
 
 #on-timeperformance calculate and painting in histogram
 #DEFINE data-import function  
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 #input:startdate,enddate,strattime in oneday,endtime in one day,route,stopA and QstopA
 #(one user-specified stop has two QstopA and ANAME,here using stopA and QstopA 2 valuable
 #to indicate the line going away or the line return)
