@@ -9,10 +9,10 @@ from mysql.connector import errorcode
 #Try to test if the connection is done
 
 user_id = "root"
-password = "1234"
+password = "0820"
 database = "dataproject"
-port = "3308"
-host = "192.168.2.107"
+port = "3306"
+host = ""
 try:
   cnx = mysql.connector.connect(user=user_id,password=password,database=database,port=port)
 except mysql.connector.Error as err:
