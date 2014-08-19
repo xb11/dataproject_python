@@ -1,5 +1,9 @@
 #! /usr/bin/env python
 #coding=utf-8
+# this program is trying to import actual load of stop and capacity database and 
+# calculate the crowding of user-specified date,time,interval,stop(constant route) and
+#paint the histogram of one sample
+
 import mysql.connector
 import numpy
 import math
